@@ -131,7 +131,11 @@ const experiences = [
         period: "Jul 2024 - Aug 2024 · 2 mos",
         summary:
           "Contributed during an AI-focused internship with hands-on engineering and implementation work.",
-        skills: ["API Development", "Python (Programming Language)", "+2 skills"],
+        skills: [
+          "API Development",
+          "Python (Programming Language)",
+          "+2 skills",
+        ],
       },
     ],
   },
@@ -302,8 +306,8 @@ export default function Home() {
               Selected Projects
             </p>
             <p className="reveal-up mt-5 max-w-xs text-base leading-7 text-[var(--color-muted)] [animation-delay:120ms]">
-              The top 3 projects stay visible up front, with the rest available
-              in a collapsible list.
+              These are the projects I’ve made for fun, for school, for clients,
+              and for hackathons as a lead developer on our team.
             </p>
           </div>
 
@@ -405,9 +409,8 @@ export default function Home() {
               Experience
             </p>
             <p className="reveal-up mt-5 max-w-xs text-base leading-7 text-[var(--color-muted)] [animation-delay:120ms]">
-              A concise experience snapshot based on the publicly accessible
-              LinkedIn preview and the work already represented in your
-              portfolio.
+              A concise experience snapshot of recent engineering and product
+              work that supports the projects presented above.
             </p>
           </div>
 
@@ -449,7 +452,11 @@ export default function Home() {
                     {item.roles.map((role, roleIndex) => (
                       <div
                         key={`${item.company}-${role.title}-${role.period}`}
-                        className={roleIndex === 0 ? "" : "border-t border-[var(--color-line)] pt-4"}
+                        className={
+                          roleIndex === 0
+                            ? ""
+                            : "border-t border-[var(--color-line)] pt-4"
+                        }
                       >
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="max-w-3xl">
@@ -505,8 +512,8 @@ export default function Home() {
               Tech Stack
             </p>
             <p className="reveal-up mt-5 max-w-xs text-base leading-7 text-[var(--color-muted)] [animation-delay:120ms]">
-              A summary of the languages, frameworks, platforms, and libraries
-              you&apos;ve used and are currently using.
+              Here is a summary of the programming languages, frameworks,
+              platforms, and libraries I’ve used and currently using.
             </p>
           </div>
 
@@ -544,8 +551,7 @@ export default function Home() {
               Achievements
             </p>
             <p className="reveal-up mt-5 max-w-xs text-base leading-7 text-[var(--color-muted)] [animation-delay:120ms]">
-              Hackathon and startup competition results surfaced from your
-              Notion page.
+              I love hackathons! Here are some of my achievements in the past.
             </p>
           </div>
 
@@ -574,39 +580,28 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="grid gap-8 border-t border-[var(--color-line)] px-5 py-10 sm:px-8 lg:grid-cols-[1.2fr_minmax(18rem,24rem)] lg:items-end lg:px-12 lg:py-14">
-          <div className="reveal-up">
-            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-muted)]">
-              Closing Note
-            </p>
+        <footer className="grid gap-8 border-t border-[var(--color-line)] px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
+          <div className="reveal-up space-y-5">
             <h2 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[0.94] tracking-[-0.05em]">
-              Built from the
-              <br />
-              projects, stack,
-              <br />
-              and wins behind the work.
+              Work with me.
             </h2>
-          </div>
-
-          <div className="reveal-up space-y-5 [animation-delay:140ms]">
             <p className="max-w-md text-base leading-7 text-[var(--color-muted)]">
-              This portfolio now reflects the public information on your Notion
-              source page instead of the earlier placeholder copy.
+              Looking for a developer who can turn product ideas into polished
+              web, mobile, or AI-powered experiences? Let&apos;s build it
+              together.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--color-foreground)] px-5 text-sm uppercase tracking-[0.2em] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-black sm:flex-none"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-transparent px-5 text-sm uppercase tracking-[0.2em] text-[var(--color-foreground)] transition-colors duration-300 hover:bg-[var(--color-accent)] sm:flex-none"
                 href="#intro"
               >
                 Back to top
               </a>
               <a
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--color-line-strong)] px-5 text-sm uppercase tracking-[0.2em] text-[var(--color-foreground)] transition-colors duration-300 hover:bg-[var(--color-accent)] sm:flex-none"
-                href="https://amyredmar.notion.site/Hi-I-m-Amyr-6a4effecde684d65bef5d02ee26c3ef3"
-                target="_blank"
-                rel="noreferrer"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--color-foreground)] px-5 text-sm uppercase tracking-[0.2em] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-black sm:flex-none"
+                href="mailto:amyrfrancisco11@gmail.com"
               >
-                Open Notion
+                Work with me
               </a>
             </div>
           </div>
