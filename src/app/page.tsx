@@ -552,7 +552,7 @@ export default function Home() {
                   <div className="space-y-4">
                     {item.roles.map((role, roleIndex) => (
                       <div
-                        key={`${item.company}-${role.title}-${role.period}`}
+                        key={`${item.company}-${role.title}-${role.startDate}-${role.endDate}`}
                         className={
                           roleIndex === 0
                             ? ""
