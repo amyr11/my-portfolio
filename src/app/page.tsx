@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import HeroTypewriter from "./hero-typewriter";
 
 function calculateDuration(
@@ -37,7 +38,7 @@ function calculateDuration(
     end = { month: today.getMonth(), year: today.getFullYear() };
   }
 
-  let totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
+  const totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
 
@@ -708,6 +709,7 @@ export default function Home() {
           </div>
         </footer>
       </div>
+      <Analytics />
     </main>
   );
 }
