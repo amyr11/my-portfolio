@@ -3,6 +3,53 @@
 import { useState } from "react";
 import HeroTypewriter from "./hero-typewriter";
 
+function calculateDuration(
+  startDate: string,
+  endDate: string | null = null,
+): string {
+  const monthMap: { [key: string]: number } = {
+    jan: 0,
+    feb: 1,
+    mar: 2,
+    apr: 3,
+    may: 4,
+    jun: 5,
+    jul: 6,
+    aug: 7,
+    sep: 8,
+    oct: 9,
+    nov: 10,
+    dec: 11,
+  };
+
+  const parseDate = (dateStr: string) => {
+    const parts = dateStr.toLowerCase().trim().split(" ");
+    const month = monthMap[parts[0].slice(0, 3)];
+    const year = parseInt(parts[1]);
+    return { month, year };
+  };
+
+  const start = parseDate(startDate);
+  let end = endDate && endDate !== "Present" ? parseDate(endDate) : null;
+
+  if (!end) {
+    const today = new Date();
+    end = { month: today.getMonth(), year: today.getFullYear() };
+  }
+
+  let totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  let duration = "";
+  if (years > 0) duration += `${years} yr${years > 1 ? "s" : ""} `;
+  if (months > 0) duration += `${months} mo${months > 1 ? "s" : ""}`;
+  if (!duration) duration = "< 1 mo";
+
+  const endDateStr = endDate === "Present" ? "Present" : endDate;
+  return `${startDate} - ${endDateStr} · ${duration.trim()}`;
+}
+
 const navigation = [
   { href: "#intro", label: "Intro" },
   { href: "#projects", label: "Projects" },
@@ -111,12 +158,14 @@ const experiences = [
   {
     company: "Tenet Healthcare",
     companyMeta: "Full-time",
-    totalDuration: "Jul 2025 - Present · 10 mos",
+    startDate: "Jul 2025",
+    endDate: "Present",
     location: "Taguig, National Capital Region, Philippines · Remote",
     roles: [
       {
         title: "Associate Data Engineer",
-        period: "Jul 2025 - Present · 10 mos",
+        startDate: "Jul 2025",
+        endDate: "Present",
         summary:
           "Works under the Platform Engineering team, focused on developing and maintaining internal tools and framework to support Data Engineers.",
         skills: ["Google Cloud Run", "Apache Airflow", "+4 skills"],
@@ -126,12 +175,14 @@ const experiences = [
   {
     company: "S.P. Madrid",
     companyMeta: "Internship",
-    totalDuration: "Jul 2024 - Aug 2024 · 2 mos",
+    startDate: "Jul 2024",
+    endDate: "Aug 2024",
     location: "Philippines · On-site",
     roles: [
       {
         title: "AI Intern",
-        period: "Jul 2024 - Aug 2024 · 2 mos",
+        startDate: "Jul 2024",
+        endDate: "Aug 2024",
         summary:
           "Contributed during an AI-focused internship with hands-on engineering and implementation work.",
         skills: [
@@ -145,26 +196,30 @@ const experiences = [
   {
     company: "Google Developer Student Clubs PLM",
     companyMeta: "2 yrs 11 mos",
-    totalDuration: "Sep 2021 - Jul 2024 · 2 yrs 11 mos",
+    startDate: "Sep 2021",
+    endDate: "Jul 2024",
     location: "Philippines / Manila, National Capital Region, Philippines",
     roles: [
       {
         title: "Mobile Development Lead",
-        period: "Sep 2023 - Jul 2024 · 11 mos",
+        startDate: "Sep 2023",
+        endDate: "Jul 2024",
         summary:
           "Led mobile development initiatives within the student developer community and helped guide project direction for the team.",
         skills: ["Flutter", "Mobile Develop", "+1 skill"],
       },
       {
         title: "Chief Technology Officer",
-        period: "Aug 2022 - Oct 2023 · 1 yr 3 mos",
+        startDate: "Aug 2022",
+        endDate: "Oct 2023",
         summary:
           "Oversaw technical direction and contributed across engineering leadership, product thinking, and team execution.",
         skills: ["Computer Science", "Full-Stack Development"],
       },
       {
         title: "Mobile Application Development Volunteer",
-        period: "Sep 2021 - Aug 2022 · 1 yr",
+        startDate: "Sep 2021",
+        endDate: "Aug 2022",
         summary:
           "Started out contributing to mobile application development efforts as a volunteer in the organization.",
         skills: [],
@@ -486,7 +541,7 @@ export default function Home() {
                         {item.company}
                       </h2>
                       <p className="mt-2 text-sm uppercase tracking-[0.2em] text-[var(--color-muted)]">
-                        {item.totalDuration}
+                        {calculateDuration(item.startDate, item.endDate)}
                       </p>
                       <p className="mt-1 text-sm uppercase tracking-[0.2em] text-[var(--color-muted)]">
                         {item.location}
@@ -510,7 +565,7 @@ export default function Home() {
                               {role.title}
                             </h3>
                             <p className="mt-1 text-xs uppercase tracking-[0.22em] text-[var(--color-muted)]">
-                              {role.period}
+                              {calculateDuration(role.startDate, role.endDate)}
                             </p>
                           </div>
                         </div>
