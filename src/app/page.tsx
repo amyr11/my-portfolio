@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import HeroTypewriter from "./hero-typewriter";
 
 const navigation = [
@@ -231,11 +234,13 @@ const achievements = [
 ];
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <main className="relative flex min-h-screen flex-1 overflow-hidden px-4 py-4 text-[var(--color-foreground)] sm:px-6 sm:py-6 lg:px-8 lg:py-8">
       <div className="surface relative mx-auto flex w-full max-w-7xl flex-col rounded-[2rem] border border-[var(--color-line)]">
-        <header className="fixed left-1/2 top-4 z-30 max-w-[calc(100%-2rem)] -translate-x-1/2">
-          <div className="no-scrollbar inline-flex max-w-full flex-nowrap items-center justify-center gap-2 overflow-x-auto rounded-[1.5rem] border border-[var(--color-line)] bg-[rgba(244,239,231,0.72)] px-3 py-3 shadow-[0_12px_30px_rgba(49,39,28,0.06)] backdrop-blur-xl sm:px-5">
+        <header className="fixed right-4 top-4 z-30 sm:left-1/2 sm:right-auto sm:max-w-[calc(100%-2rem)] sm:-translate-x-1/2">
+          <div className="hidden sm:inline-flex no-scrollbar max-w-full flex-nowrap items-center justify-center gap-2 overflow-x-auto rounded-[1.5rem] border border-[var(--color-line)] bg-[rgba(244,239,231,0.72)] px-3 py-3 shadow-[0_12px_30px_rgba(49,39,28,0.06)] backdrop-blur-xl sm:px-5">
             {navigation.map((item) => (
               <a
                 key={item.href}
@@ -246,6 +251,47 @@ export default function Home() {
               </a>
             ))}
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            className="sm:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-[var(--color-muted)] transition-all duration-300 hover:border-[var(--color-line-strong)] hover:bg-[var(--color-accent)]"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  isMenuOpen
+                    ? "M6 18L18 6M6 6l12 12"
+                    : "M4 6h16M4 12h16M4 18h16"
+                }
+              />
+            </svg>
+          </button>
+
+          {isMenuOpen && (
+            <div className="sm:hidden absolute right-0 top-full mt-2 flex w-48 flex-col gap-2 rounded-[1rem] border border-[var(--color-line)] bg-white p-3 shadow-[0_12px_30px_rgba(49,39,28,0.06)]">
+              {navigation.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="rounded-full border border-[var(--color-line)] px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-line-strong)] hover:bg-[var(--color-accent)] text-center"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </header>
 
         <section
